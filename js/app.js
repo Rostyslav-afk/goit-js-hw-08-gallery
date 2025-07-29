@@ -80,9 +80,13 @@ const createItem = galleryItems.map(img => {
     </li>`;
 }).join("");
 
+
 jsGallery.insertAdjacentHTML("beforeend", createItem);
 jsGallery.addEventListener("click", isClickedOnImage)
 lightboxButton.addEventListener("click", isClickedOnClose)
+window.addEventListener("keydown", isClickedOnClose)
+lightbox.addEventListener("click", () => {lightbox.classList.remove("is-open");});
+
 
 function isClickedOnImage(event) {
   // console.log("Target" + " " + event.target.alt);
@@ -102,6 +106,11 @@ function isClickedOnImage(event) {
 
 };
 
-function isClickedOnClose() {
+function isClickedOnClose(event) {
+  if (event.key === "Escape") {
+    lightbox.classList.remove("is-open");
+  }
+
   lightbox.classList.remove("is-open");
 };
+
